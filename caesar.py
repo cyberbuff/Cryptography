@@ -24,7 +24,16 @@ class Caesar(Cipher):
             # {**x,**y} merges dictionary x and y.
             return {**caesar_dict(string.ascii_lowercase),**caesar_dict(string.ascii_uppercase)}
         cipher_dict = create_dictionary(shift)
-        return "".join([cipher_dict[i] if i in string.ascii_letters else i for i in cipher])    
+        plain_text = []
+        for i in cipher:
+            try:
+                if i in string.ascii_letters:
+                    plain_text += cipher_dict[i]
+                else:
+                    plain_text += i
+            except:
+                pass
+        return "".join(plain_text)
 
 
     def __calculate_frequency(self, cipher, key):

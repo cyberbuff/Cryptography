@@ -1,4 +1,5 @@
 import string
+import itertools
 
 def sort_dict_by_values(d2,reverse=False):
     d2 = dict(sorted(d2.items(), key=lambda x: x[1],reverse=reverse))
@@ -27,8 +28,7 @@ def split_array(arr, number):
     return a
 
 
-def split_strings(text, number):
-    a = [[] for _ in range(number)]
-    for i in range(len(text)):
-        a[i%number].append(str(text[i]))
-    return ["".join(i) for i in a]
+def split_strings(x, k):
+    blocks = [x[i:i+k] for i in range(0, len(x), k)]
+    transposedBlocks = list(itertools.zip_longest(*blocks, fillvalue=" "))
+    return ["".join(i) for i in transposedBlocks]

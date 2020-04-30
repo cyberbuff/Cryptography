@@ -19,13 +19,15 @@ class FrequencyAnalyzer:
     @staticmethod
     def findIC(text):
         """Determines the Index of Coincidence for the given text"""
-        text = text.replace(" ","")
         num = lambda x: x*(x-1)
-        ic_denominator = num(len(text))
-        sum = 0
-        for i in string.ascii_lowercase:
-            sum += num(text.count(i))
-        return (sum/ic_denominator)
+        if len(text) == 1:
+            return None
+        else:
+            ic_denominator = num(len(text))
+            sum = 0
+            for i in string.ascii_lowercase:
+                sum += num(text.count(i))
+            return (sum/ic_denominator)
 
 
 class LetterFrequency(Enum):
